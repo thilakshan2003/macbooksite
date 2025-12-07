@@ -6,7 +6,7 @@ const Hero = () => {
   /*React provides a reference (videoRef) to the actual video element on the screen. 
   The useEffect function uses this reference to directly access the video element's built-in functions 
   to make it start playing at double speed as soon as the video appears.*/
-  
+
   useEffect(() => {
     // Play the video when the component mounts
     if (videoRef.current) {
@@ -27,6 +27,10 @@ const Hero = () => {
 
         {/* A very optimised video animation - playsinline to hide volume/forward/backwards stuff*/}
         <video ref = {videoRef} src='/videos/hero.mp4' autoPlay muted playsInline />
+
+        <button className='btn-primary'> Buy Now </button>  
+        <p1> From $1999 or $199/mo for 12 months</p1>
+
       </div>
       
     </section>
