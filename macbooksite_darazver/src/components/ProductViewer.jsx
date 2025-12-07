@@ -1,18 +1,21 @@
 import React from 'react'
+import { useMediaQuery } from 'react-responsive' // add this
 import useStore from '../store'     
 import clsx from 'clsx'             
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei' // npm install @react-three/drei
 import MacbookModel14 from './models/Macbook-14'
-import StudioLights from './studio-lights'
+import StudioLights from './three/StudioLights'
+import ModelSwitcher from './three/ModelSwitcher'
 
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useStore();
 
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); //Check for mobile screen
+
   return (
-    // make sure section won't clip the canvas
-    <section id='product-viewer' className='product-viewer-section' style={{ overflow: 'visible' }}>
+      <section id='product-viewer' className='product-viewer-section' style={{ overflow: 'visible' }}>
       <h2>Take a closer look</h2>
       <div className='controls'>
         <p className='info'>Macbook Pro 16 in {color} </p>
@@ -54,14 +57,7 @@ const ProductViewer = () => {
         <StudioLights />
 
         {/* Macbook Model - use store scale and amplify it so it's visible */}
-        <MacbookModel14 scale={Math.max(scale * 0.5, 0.12)} position={[0, 0, 0]} />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          // allow full rotation but clamp polar so top doesn't get clipped visually
-          minPolarAngle={0.1}
-          maxPolarAngle={Math.PI - 0.1}
-        />
+        <ModelSwitcher color={color} scale={isMobile ? scale - 0.03 : scale} isMobile={isMobile} />
       </Canvas>
     </section>
   )

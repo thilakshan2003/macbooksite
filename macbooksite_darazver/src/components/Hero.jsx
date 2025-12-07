@@ -29,7 +29,7 @@ const Hero = () => {
         <video ref = {videoRef} src='/videos/hero.mp4' autoPlay muted playsInline />
 
         <button className='btn-primary'> Buy Now </button>  
-        <p1> From $1999 or $199/mo for 12 months</p1>
+        <p> From $1999 or $199/mo for 12 months</p>
 
       </div>
       
