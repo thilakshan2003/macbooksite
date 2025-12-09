@@ -135,6 +135,17 @@ const StudioLights = () => {
       <pointLight position={[-2.4, 2.3, -6.2]} intensity={0.45} distance={3} decay={0} color={'#a8f0ff'} />
       <pointLight position={[2.4, 2.3, -6.2]} intensity={0.45} distance={3} decay={0} color={'#ffb3a1'} />
 
+      {/* FRONT / VIEWER light - illuminates the model's front face from the camera/viewer side */}
+      <pointLight
+        name="viewer-front"
+        position={[0, 2, 6]}     // match your camera/viewer position
+        intensity={0.9}         // adjust to taste (0.6-1.2 typical)
+        distance={20}
+        decay={2}
+        color={'#ffffff'}
+        castShadow={false}
+      />
+
       {/* reduce ambient so rim contrast reads stronger */}
       <ambientLight intensity={0.04} />
     </group>

@@ -4,7 +4,6 @@ import useStore from '../store'
 import clsx from 'clsx'             
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei' // npm install @react-three/drei
-import MacbookModel14 from './models/Macbook-14'
 import StudioLights from './three/StudioLights'
 import ModelSwitcher from './three/ModelSwitcher'
 
@@ -56,8 +55,8 @@ const ProductViewer = () => {
       >
         <StudioLights />
 
-        {/* Macbook Model - use store scale and amplify it so it's visible */}
-        <ModelSwitcher color={color} scale={isMobile ? scale - 0.03 : scale} isMobile={isMobile} />
+        {/* ModelSwitcher receives raw selection and chooses which model to mount */}
+        <ModelSwitcher scale={isMobile ? scale - 0.03 : scale} isMobile={isMobile} />
       </Canvas>
     </section>
   )
