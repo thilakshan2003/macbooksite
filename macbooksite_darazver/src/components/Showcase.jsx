@@ -9,18 +9,18 @@ const Showcase = () => {
         if(!isTablet) {
             const timeline = gsap.timeline({
                 scrollTrigger: {
-                    trigger: '#showcase', // Animation triggers when #showcase enters the viewport
+                    trigger: '#showcase',
                     start: 'top top',
                     end: 'bottom top',
                     scrub: true,
-                    pin: true,
+                    // pin only the media element so the text isn't stuck under the pinned block
+                    pin: '.media',
+                    pinSpacing: true,
                 }
             });
-
             timeline
-                .to('.mask img', {
-                    transform: 'scale(1.1)'
-                }).to('.content', { opacity: 1, y: 0, ease: 'power1.in' });
+                .to('.mask img', { transform: 'scale(1.1)' })
+                .to('.content', { opacity: 1, y: 0, ease: 'power1.in' });
         }
     }, [isTablet])
 

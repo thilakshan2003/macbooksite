@@ -12,6 +12,10 @@ const useStore = create((set) => ({
   // setScale: action to update the `scale` state.
   setScale: (scale) => set({ scale }),
 
+  texture : '/videos/features-1.mp4',
+  // setTexture: action to update the `texture` state.
+  setTexture: (texture) => set({ texture }),
+
   // reset: action that restores both `color` and `scale` to their defaults.
   reset: () => set({ color: '#2e2c2e', scale: 0.08 }),
 }))

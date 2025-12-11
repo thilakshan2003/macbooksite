@@ -31,23 +31,23 @@ const Performance = () => {
                 }
             );
 
-            if (isMobile) return; //Dont apply image animations on mobile
+            if (isMobile) return;
 
             // Image Positioning Timeline
             const tl = gsap.timeline({
                 defaults: { duration: 2, ease: "power1.inOut", overwrite: "auto" },
                 scrollTrigger: {
                     trigger: sectionEl,
-                    start: "top bottom", // Start when top of section hits bottom of viewport
-                    end: "center center", // End when center of section hits center of viewport
+                    start: "top bottom",
+                    end: "bottom top",
                     scrub: 1,
                     invalidateOnRefresh: true,
                 },
             });
 
-            // Position Each Performance Image. Values are defined in constants/index.js
+            // Position Each Performance Image
             performanceImgPositions.forEach((item) => {
-                if (item.id === "p5") return; //Skip the macbook image animation
+                if (item.id === "p5") return;
 
                 const selector = `.${item.id}`;
                 const vars = {};
@@ -61,7 +61,7 @@ const Performance = () => {
                 tl.to(selector, vars, 0);
             });
         },
-        { scope: sectionRef, dependencies: [isMobile] } //Scope to this section only
+        { scope: sectionRef, dependencies: [isMobile] }
     );
 
     return (
