@@ -18,15 +18,8 @@ A project that replicates Apple's MacBook landing page built with modern tools l
 - **TailwindCSS**: A utility-first CSS framework for elegant and responsive designs.
 - **JavaScript**: Glues the project together with custom logic.
 
-## ✨ Live Demo or Preview
 
-Feel free to include a live demo link or screenshots of your project:
 
-- [Live Demo](#) (replace `#` with the actual link to your hosted site)
-
-![Preview](placeholder-for-image-or-gif)
-
-> **Tip:** Replace the placeholder above with an actual image or gif showing your site in action.
 
 ---
 
