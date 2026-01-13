@@ -17,19 +17,43 @@ const ModelScroll = () => {
 
     // Pre-load all feature videos during component mount
     useEffect(() => {
-        featureSequence.forEach((feature) => {
-            const v = document.createElement('video');
+        const preloadVideos = () => {
+            featureSequence.forEach((feature) => {
+                const v = document.createElement('video');
 
-            Object.assign(v, {
-                src: feature.videoPath,
-                muted: true,
-                playsInline: true,
-                preload: 'auto',
-                crossOrigin: 'anonymous',
+                Object.assign(v, {
+                    src: feature.videoPath,
+                    muted: true,
+                    playsInline: true,
+                    preload: 'auto',
+                    crossOrigin: 'anonymous',
+                });
+
+                // load during idle time where possible to avoid jank
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(() => v.load());
+                } else {
+                    // small delay to avoid blocking mount
+                    setTimeout(() => v.load(), 500);
+                }
             });
+        };
 
-            v.load();
-        })
+        const sectionEl = document.getElementById('features');
+        if (!sectionEl) return;
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    preloadVideos();
+                    obs.disconnect();
+                }
+            });
+        }, { root: null, rootMargin: '300px', threshold: 0.01 });
+
+        observer.observe(sectionEl);
+
+        return () => observer.disconnect();
     }, []);
 
     useGSAP(() => {
